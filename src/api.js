@@ -2,7 +2,6 @@ const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const XMLHttpRequest = require('xhr2');
 
 const app = express();
 const router = express.Router();
@@ -19,7 +18,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, cors({origin: '*'}), (req, res) => {
     console.log(req.body);
     res.send({
         "ok": "ok"
