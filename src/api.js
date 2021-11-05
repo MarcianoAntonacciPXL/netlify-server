@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     body = JSON.stringify(req.body);
-    res.send(body);
+    console.log(body);
+    res.send("ok");
 });
 
 app.use('/.netlify/functions/api',router);
