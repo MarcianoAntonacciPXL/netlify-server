@@ -2,6 +2,7 @@ const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const XMLHttpRequest = require('xhr2');
 
 const app = express();
 const router = express.Router();
@@ -18,11 +19,22 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', jsonParser, cors({origin: '*'}), (req, res) => {
-    console.log(req.body);
-    res.send({
-        "ok": "ok"
-    })
+router.post('/', jsonParser, (req, res) => {
+    const http = new XMLHttpRequest();
+    http.open("POST", ZOHO_URL, true);
+    http.setRequestHeader("Content-type", "application/json");
+
+    http.onreadystatechange = () => {
+        if (http.readyState == 4 && http.status == 200) {
+            res.statusCode = 200;
+            res.send("record created");
+        } else {
+            res.send("something went wrong");
+        }
+    }
+    
+    json = JSON.stringify(req.body);
+    http.send(json);   
 });
 
 app.use('/.netlify/functions/api',router);
