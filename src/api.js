@@ -23,8 +23,6 @@ router.post('/', jsonParser, (req, res) => {
     const http = new XMLHttpRequest();
     http.open("POST", ZOHO_URL, true);
     http.setRequestHeader("Content-type", "application/json");
-    http.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
-    http.setRequestHeader('Access-Control-Allow-Origin', '*');
 
     http.onreadystatechange = () => {
         if (http.readyState == 4 && http.status == 200) {
