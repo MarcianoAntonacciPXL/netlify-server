@@ -5,8 +5,11 @@ const cors = require('cors');
 const app = express();
 const router = express.Router();
 
+app.use(cors({
+    origin: '*'
+}));
 
-router.get('/', cors(), (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         'hello': 'hi'
     });
