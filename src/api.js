@@ -20,9 +20,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
+    console.log(req.body);
     const http = new XMLHttpRequest();
     http.open("POST", ZOHO_URL, true);
-    http.setRequestHeader("Content-type", "application/json");
+    //http.setRequestHeader("Content-type", "application/json");
 
     http.onreadystatechange = () => {
         if (http.readyState == 4 && http.status == 200) {
