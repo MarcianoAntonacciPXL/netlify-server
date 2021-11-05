@@ -11,13 +11,13 @@ app.use(cors({
     origin: '*'
 }));
 
-router.get('/', jsonParser, (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         'hello': 'hi'
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', jsonParser, (req, res) => {
     body = JSON.stringify(req.body);
     console.log(body);
     res.send(body.toString());
