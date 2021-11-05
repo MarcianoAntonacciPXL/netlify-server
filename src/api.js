@@ -21,21 +21,9 @@ router.get('/', (req, res) => {
 
 router.post('/', jsonParser, (req, res) => {
     console.log(req.body);
-    const http = new XMLHttpRequest();
-    http.open("POST", ZOHO_URL, true);
-    //http.setRequestHeader("Content-type", "application/json");
-
-    http.onreadystatechange = () => {
-        if (http.readyState == 4 && http.status == 200) {
-            res.statusCode = 200;
-            res.send("record created");
-        } else {
-            res.send("something went wrong");
-        }
-    }
-    
-    json = JSON.stringify(req.body);
-    http.send(json);   
+    res.send({
+        "ok": "ok"
+    })
 });
 
 app.use('/.netlify/functions/api',router);
