@@ -1,10 +1,12 @@
 const express = require('express');
 const serverless = require('serverless-http');
+const cors = require('cors');
 
 const app = express();
 const router = express.Router();
 
-router.get('/', (req, res) => {
+
+router.get('/', cors(), (req, res) => {
     res.json({
         'hello': 'hi'
     });
