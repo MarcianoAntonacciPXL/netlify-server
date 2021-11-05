@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, cors({origin: '*'}), (req, res) => {
     const http = new XMLHttpRequest();
     http.open("POST", ZOHO_URL, true);
     http.setRequestHeader("Content-type", "application/json");
